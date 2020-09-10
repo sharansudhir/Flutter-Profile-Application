@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,6 +30,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final firstName = TextEditingController();
   final lastName = TextEditingController();
+  var DateOfBirth;
   changePassword(BuildContext context) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => PasswordChange()));
@@ -77,6 +79,18 @@ class _HomeState extends State<Home> {
                 textColor: Colors.black,
                 child: Text('Forgot Password ?'),
               )),
+          Container(
+            height: 200,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              initialDateTime: DateTime(2020, 1, 1),
+              onDateTimeChanged: (DateTime newDateTime) {
+                setState(() {
+                  DateOfBirth = newDateTime;
+                });
+              },
+            ),
+          ),
           Column(
             children: [DropDownList()],
           ),
